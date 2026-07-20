@@ -2,47 +2,72 @@
 
 Stack para practicar maquetacion HTML y CSS sirviendo archivos estaticos con Nginx.
 
-## Que incluye
+## Flujo De Trabajo Estandar
 
-- Nginx para servir archivos estaticos
-- Carpeta `src/` para HTML y CSS
-- Puerto configurable por `.env`
+Este stack ya incluye `.env` y `.env.example`.
 
-## Como levantarlo
+- Usa `.env` para cambiar puertos, usuarios, claves locales o nombres de base de datos segun la necesidad del momento.
+- Usa `.env.example` como referencia limpia de los valores recomendados por la academia.
+- Las credenciales incluidas son solo para practica local. No reemplazan una configuracion segura de produccion.
+
+## Como Levantarlo
 
 ```bash
 cd frontend/html-css-nginx
-cp .env.example .env
 docker compose config
 docker compose up -d
 docker compose ps
 ```
 
-## Como acceder
+## Como Acceder
 
 Abre `http://localhost:8090`.
 
-## Como apagarlo
+## Como Apagarlo
 
 ```bash
 docker compose down
 ```
 
-## Limpieza completa
+## Reinicio Limpio
 
 ```bash
 docker compose down -v
+docker compose up -d
 ```
 
-Usa `down -v` solo si quieres borrar volumenes y datos locales.
+Usa `docker compose down -v` solo cuando quieras borrar volumenes y datos locales para empezar de cero.
+
+## Archivos Del Stack
+
+- `docker-compose.yml`: define los servicios del stack.
+- `.env`: configuracion local lista para usar y modificar en clase.
+- `.env.example`: copia de referencia con valores base.
+- `README.md`: instrucciones del stack.
+
+## Variables Principales
+
+- `APP_PORT=8090` expone el puerto interno `80`.
+
+## Que Incluye
+
+- Nginx para servir archivos estaticos
+- Carpeta `src/` para HTML y CSS
+- Puerto configurable por `.env`
 
 ## Validacion
 
-El navegador debe mostrar la pagina inicial y cualquier cambio en `src/` debe verse al recargar.
+El stack queda bien cuando:
 
-## Buenas practicas
+- `docker compose config` no muestra errores.
+- `docker compose ps` muestra los servicios activos.
+- La URL o cliente indicado en `Como Acceder` responde correctamente.
+- Los cambios necesarios se hacen en `.env` sin editar directamente el YAML para casos normales.
 
-- No subas `.env`.
-- Mantiene credenciales reales fuera del repositorio.
-- Si cambias puertos, actualiza `.env.example` y este README.
-- Si agregas servicios, documenta para que sirven.
+## Buenas Practicas
+
+- Cambia primero `.env` antes de tocar `docker-compose.yml`.
+- No uses credenciales reales en estos entornos de practica.
+- Si un puerto esta ocupado, cambia el puerto local en `.env`.
+- Si agregas un servicio nuevo, documenta su uso y sus variables.
+- No subas carpetas generadas por contenedores como `data/`, `volumes/`, `node_modules/`, `vendor/`, `dist/` o `build/`.

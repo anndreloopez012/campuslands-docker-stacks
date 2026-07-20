@@ -36,7 +36,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          forbidden=$(find . -path ./.git -prune -o -type f \( -name ".env" -o -path "*/data/*" -o -path "*/volumes/*" -o -path "*/node_modules/*" -o -name "*.dump" -o -name "*.bak" -o -name "*.tar" -o -name "*.gz" \) -print || true)
+          forbidden=$(find . -path ./.git -prune -o -type f \( -path "*/data/*" -o -path "*/volumes/*" -o -path "*/node_modules/*" -o -path "*/vendor/*" -o -path "*/dist/*" -o -name "*.dump" -o -name "*.bak" -o -name "*.tar" -o -name "*.gz" \) -print || true)
           if [ -n "$forbidden" ]; then
             echo "Archivos no permitidos:"
             echo "$forbidden"
@@ -46,6 +46,7 @@ jobs:
           while IFS= read -r compose; do
             dir=$(dirname "$compose")
             test -f "$dir/README.md" || { echo "Falta README.md en $dir"; missing=1; }
+            test -f "$dir/.env" || { echo "Falta .env en $dir"; missing=1; }
             test -f "$dir/.env.example" || { echo "Falta .env.example en $dir"; missing=1; }
             docker compose -f "$compose" config >/dev/null
           done < <(find . -name docker-compose.yml -print | sort)
@@ -60,5 +61,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: "Este Pull Request no se puede aceptar todavia porque la estructura no cumple. Revisa que cada stack tenga `README.md`, `docker-compose.yml` y `.env.example`, y que no subas `.env`, datos generados, volumenes, backups o archivos pesados. Corrige la rama y vuelve a hacer push al mismo PR."
+              body: "Este Pull Request no se puede aceptar todavia porque la estructura no cumple. Revisa que cada stack tenga `README.md`, `docker-compose.yml`, `.env` y `.env.example`, y que no subas datos generados, volumenes, backups, dependencias instaladas o archivos pesados. Corrige la rama y vuelve a hacer push al mismo PR."
             });
