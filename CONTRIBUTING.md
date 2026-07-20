@@ -26,6 +26,7 @@ Cada stack debe tener:
 
 - `README.md`
 - `docker-compose.yml`
+- `.env`
 - `.env.example`
 
 Si el stack necesita archivos extra, deben quedar dentro de la misma carpeta.
@@ -62,7 +63,7 @@ chore(repo): ajustar validacion de estructura
 - Cambios fuera de la estructura del repositorio.
 - Archivos `.env` con credenciales reales.
 - Carpetas `data`, `volumes`, `node_modules` o archivos pesados generados por Docker.
-- Stacks sin `README.md`, `docker-compose.yml` o `.env.example`.
+- Stacks sin `README.md`, `docker-compose.yml`, `.env` o `.env.example`.
 - Documentacion insuficiente para levantar el servicio.
 
 ## Antes de pedir revision

@@ -2,53 +2,70 @@
 
 Oracle local para aprender SQL empresarial, usuarios y esquemas.
 
-## Para que sirve
+## Flujo De Trabajo Estandar
 
-Este stack permite trabajar la tecnologia en local usando contenedores. La idea es evitar instalaciones directas en el sistema operativo y mantener cada practica aislada.
+Este stack ya incluye `.env` y `.env.example`.
 
-## Archivos
+- Usa `.env` para cambiar puertos, usuarios, claves locales o nombres de base de datos segun la necesidad del momento.
+- Usa `.env.example` como referencia limpia de los valores recomendados por la academia.
+- Las credenciales incluidas son solo para practica local. No reemplazan una configuracion segura de produccion.
 
-- `docker-compose.yml`: define los servicios.
-- `.env.example`: variables listas para copiar.
-- `README.md`: instrucciones del stack.
-
-## Como levantarlo
+## Como Levantarlo
 
 ```bash
 cd bases-de-datos/oracle-free
-cp .env.example .env
 docker compose config
 docker compose up -d
 docker compose ps
 ```
 
-## Como apagarlo
+## Como Acceder
+
+Revisa `docker compose ps` para confirmar el puerto publicado y abre el servicio desde tu navegador o cliente correspondiente.
+
+## Como Apagarlo
 
 ```bash
 docker compose down
 ```
 
-## Como borrar datos locales
+## Reinicio Limpio
 
 ```bash
 docker compose down -v
+docker compose up -d
 ```
 
-Usa ese comando solo si quieres limpiar volumenes y empezar de cero.
+Usa `docker compose down -v` solo cuando quieras borrar volumenes y datos locales para empezar de cero.
 
-## Puertos y acceso
+## Archivos Del Stack
 
-- Puerto local sugerido: `1522`
+- `docker-compose.yml`: define los servicios del stack.
+- `.env`: configuracion local lista para usar y modificar en clase.
+- `.env.example`: copia de referencia con valores base.
+- `README.md`: instrucciones del stack.
 
-Si el puerto esta ocupado, cambia el valor en `.env` y vuelve a levantar el stack.
+## Variables Principales
+
+- `ORACLE_PORT=1522` expone el puerto interno `1521`.
+
+## Que Incluye
+
+- Servicios definidos en `docker-compose.yml` para levantar este entorno local.
 
 ## Validacion
 
-El stack esta bien levantado cuando `docker compose ps` muestra los servicios en estado `running` o `healthy`.
+El stack queda bien cuando:
 
-## Buenas practicas
+- `docker compose config` no muestra errores.
+- `docker compose ps` muestra los servicios activos.
+- La URL o cliente indicado en `Como Acceder` responde correctamente.
+- Los cambios necesarios se hacen en `.env` sin editar directamente el YAML para casos normales.
 
-- No subas el archivo `.env`.
-- No subas carpetas de datos generadas por los contenedores.
-- Documenta cualquier cambio de puertos o credenciales de practica en este README.
-- Si agregas un servicio nuevo, deja claro para que sirve y como se accede.
+## Buenas Practicas
+
+- Cambia primero `.env` antes de tocar `docker-compose.yml`.
+- No uses credenciales reales en estos entornos de practica.
+- Si un puerto esta ocupado, cambia el puerto local en `.env`.
+- Si agregas un servicio nuevo, documenta su uso y sus variables.
+- No subas carpetas generadas por contenedores como `data/`, `volumes/`, `node_modules/`, `vendor/`, `dist/` o `build/`.

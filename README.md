@@ -24,11 +24,12 @@ Este README funciona como panel principal de navegacion. Desde aqui puedes ir di
 
 ```bash
 cd ruta/del/stack
-cp .env.example .env
 docker compose config
 docker compose up -d
 docker compose ps
 ```
+
+Cada stack ya trae un `.env` listo. Modifica ese archivo cuando necesites cambiar puertos, usuarios, claves locales o nombres de base de datos.
 
 Para apagar:
 
@@ -62,7 +63,8 @@ campuslands-docker-stacks/
 Cada stack tiene:
 
 - `docker-compose.yml`: servicios listos para levantar.
-- `.env.example`: variables de entorno de practica.
+- `.env`: variables listas para usar y modificar en clase.
+- `.env.example`: referencia limpia de los valores recomendados.
 - `README.md`: instrucciones especificas, puertos y comandos.
 
 ## Selector De Stacks
@@ -215,6 +217,7 @@ Abre la categoria que necesitas y entra al README del stack.
 - Nadie debe subir directo a `main` o `dev`.
 - Todo cambio debe entrar por Pull Request hacia `dev`.
 - No se deben subir credenciales reales, datos privados, backups grandes ni carpetas generadas por contenedores.
+- Los `.env` incluidos son configuraciones locales de clase. Si necesitas valores personales o sensibles, usa `.env.local`, que queda ignorado por Git.
 
 ## Convencion De Ramas Para Estudiantes
 
