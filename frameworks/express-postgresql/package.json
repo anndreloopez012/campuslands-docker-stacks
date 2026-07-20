@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "express": "latest",
+    "pg": "latest"
+  },
+  "devDependencies": {}
+}

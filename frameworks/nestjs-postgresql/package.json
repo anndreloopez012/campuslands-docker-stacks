@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "start:dev": "nest start --watch"
+  },
+  "dependencies": {
+    "@nestjs/common": "latest",
+    "@nestjs/core": "latest",
+    "@nestjs/platform-express": "latest",
+    "reflect-metadata": "latest",
+    "rxjs": "latest",
+    "pg": "latest"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "latest",
+    "@nestjs/schematics": "latest",
+    "typescript": "latest",
+    "ts-node": "latest"
+  }
+}

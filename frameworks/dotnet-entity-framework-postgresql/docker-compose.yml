@@ -1,0 +1,38 @@
+services:
+  app:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    container_name: frameworks-dotnet-ef-postgresql
+    working_dir: /workspace/app
+    command: dotnet watch run --urls http://0.0.0.0:8099
+    ports:
+      - "${APP_PORT:-8099}:8099"
+    environment:
+      ConnectionStrings__Default: Host=postgres;Port=5432;Database=${POSTGRES_DB:-campus_dotnet};Username=${POSTGRES_USER:-campus_user};Password=${POSTGRES_PASSWORD:-campus_pass}
+    volumes:
+      - ./:/workspace
+      - nuget-cache:/root/.nuget/packages
+    depends_on:
+      - postgres
+    restart: unless-stopped
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-campus_dotnet}
+      POSTGRES_USER: ${POSTGRES_USER:-campus_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-campus_pass}
+    ports:
+      - "${POSTGRES_PORT:-5455}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+  adminer:
+    image: adminer:4
+    depends_on:
+      - postgres
+    ports:
+      - "${ADMINER_PORT:-8100}:8080"
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  nuget-cache:

@@ -1,0 +1,48 @@
+services:
+  app:
+    image: composer:2
+    container_name: frameworks-laravel-mysql
+    working_dir: /workspace
+    command: sh -c "if [ ! -f artisan ]; then composer create-project laravel/laravel temp-app && cp -R temp-app/. . && rm -rf temp-app; fi; php artisan serve --host=0.0.0.0 --port=8097"
+    ports:
+      - "${APP_PORT:-8097}:8097"
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: ${MYSQL_DATABASE:-campus_laravel}
+      DB_USERNAME: ${MYSQL_USER:-campus_user}
+      DB_PASSWORD: ${MYSQL_PASSWORD:-campus_pass}
+    volumes:
+      - ./:/workspace
+      - composer-cache:/tmp/cache
+    depends_on:
+      - mysql
+    restart: unless-stopped
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-campus_laravel}
+      MYSQL_USER: ${MYSQL_USER:-campus_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-campus_pass}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-campus_root}
+    ports:
+      - "${MYSQL_PORT:-3310}:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    restart: unless-stopped
+  phpmyadmin:
+    image: phpmyadmin:5
+    depends_on:
+      - mysql
+    ports:
+      - "${PHPMYADMIN_PORT:-8098}:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: ${MYSQL_USER:-campus_user}
+      PMA_PASSWORD: ${MYSQL_PASSWORD:-campus_pass}
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  composer-cache:

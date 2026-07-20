@@ -1,0 +1,41 @@
+services:
+  app:
+    image: python:3.12-slim
+    container_name: frameworks-fastapi-postgresql
+    working_dir: /workspace
+    command: sh -c "pip install -r requirements.txt && uvicorn src.main:app --host 0.0.0.0 --port 8002 --reload"
+    ports:
+      - "${APP_PORT:-8002}:8002"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-campus_db}
+      POSTGRES_USER: ${POSTGRES_USER:-campus_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-campus_pass}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-campus_db}
+      MYSQL_USER: ${MYSQL_USER:-campus_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-campus_pass}
+    volumes:
+      - ./:/workspace
+    depends_on:
+      - postgres
+    restart: unless-stopped
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-campus_db}
+      POSTGRES_USER: ${POSTGRES_USER:-campus_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-campus_pass}
+    ports:
+      - "${POSTGRES_PORT:-5452}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+  adminer:
+    image: adminer:4
+    depends_on:
+      - postgres
+    ports:
+      - "${ADMINER_PORT:-8093}:8080"
+    restart: unless-stopped
+
+volumes:
+  db-data:

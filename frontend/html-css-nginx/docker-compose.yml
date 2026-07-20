@@ -1,0 +1,9 @@
+services:
+  web:
+    image: nginx:1.27-alpine
+    container_name: campus-html-css
+    ports:
+      - "${APP_PORT:-8090}:80"
+    volumes:
+      - ./src:/usr/share/nginx/html:ro
+    restart: unless-stopped

@@ -11,6 +11,8 @@ Este README funciona como panel principal de navegacion. Desde aqui puedes ir di
 | Instalar Docker | [Guia de instalacion](docs/instalacion-docker/README.md) |
 | Ver todos los stacks | [Indice completo](INDICE-DE-STACKS.md) |
 | Usar JavaScript, Python, PHP, Java, Go, Rust y otros | [Lenguajes](#lenguajes) |
+| Usar HTML/CSS, React, Vue o Angular | [Frontend](#frontend) |
+| Usar Express, NestJS, FastAPI, Django, Spring Boot, Laravel o .NET EF | [Frameworks completos](#frameworks-completos) |
 | Usar MySQL, PostgreSQL, MongoDB, Redis y otros | [Bases de datos](#bases-de-datos) |
 | Administrar bases de datos desde navegador | [Gestores de bases de datos](#gestores-de-bases-de-datos) |
 | Levantar n8n | [Automatizacion](#automatizacion) |
@@ -48,6 +50,8 @@ Usa `docker compose down -v` solo cuando quieras reiniciar la informacion guarda
 campuslands-docker-stacks/
 ├── docs/instalacion-docker/
 ├── lenguajes/
+├── frontend/
+├── frameworks/
 ├── bases-de-datos/
 ├── gestores-bd/
 ├── automatizacion/
@@ -83,6 +87,33 @@ Abre la categoria que necesitas y entra al README del stack.
 | C y C++ | [lenguajes/c-cpp](lenguajes/c-cpp/README.md) | Compilacion local sin instalar toolchains |
 | Bun | [lenguajes/bun](lenguajes/bun/README.md) | Runtime moderno para JavaScript y TypeScript |
 | Deno | [lenguajes/deno](lenguajes/deno/README.md) | Runtime seguro para JavaScript y TypeScript |
+
+</details>
+
+<details>
+<summary><strong>Frontend</strong></summary>
+
+| Stack | Carpeta | Uso principal |
+| --- | --- | --- |
+| HTML + CSS con Nginx | [frontend/html-css-nginx](frontend/html-css-nginx/README.md) | Practicar HTML y CSS sirviendo archivos estaticos |
+| React con Vite | [frontend/react-vite](frontend/react-vite/README.md) | Crear interfaces React modernas sin instalar Node local |
+| Vue con Vite | [frontend/vue-vite](frontend/vue-vite/README.md) | Practicar Vue con servidor Vite |
+| Angular | [frontend/angular](frontend/angular/README.md) | Practicar Angular CLI dentro de Docker |
+
+</details>
+
+<details>
+<summary><strong>Frameworks Completos</strong></summary>
+
+| Stack | Carpeta | Incluye |
+| --- | --- | --- |
+| Express con PostgreSQL y Adminer | [frameworks/express-postgresql](frameworks/express-postgresql/README.md) | Express, PostgreSQL y Adminer |
+| NestJS con PostgreSQL | [frameworks/nestjs-postgresql](frameworks/nestjs-postgresql/README.md) | NestJS, PostgreSQL y Adminer |
+| FastAPI con PostgreSQL | [frameworks/fastapi-postgresql](frameworks/fastapi-postgresql/README.md) | FastAPI, PostgreSQL y Adminer |
+| Django con PostgreSQL | [frameworks/django-postgresql](frameworks/django-postgresql/README.md) | Django, PostgreSQL y Adminer |
+| Spring Boot con PostgreSQL | [frameworks/spring-boot-postgresql](frameworks/spring-boot-postgresql/README.md) | Spring Boot, PostgreSQL, Maven y Adminer |
+| Laravel con MySQL y phpMyAdmin | [frameworks/laravel-mysql](frameworks/laravel-mysql/README.md) | Laravel, MySQL y phpMyAdmin |
+| .NET Entity Framework con PostgreSQL | [frameworks/dotnet-entity-framework-postgresql](frameworks/dotnet-entity-framework-postgresql/README.md) | .NET, Entity Framework, PostgreSQL y Adminer |
 
 </details>
 
@@ -153,10 +184,17 @@ Abre la categoria que necesitas y entra al README del stack.
 
 | Si quieres aprender | Empieza por | Luego combina con |
 | --- | --- | --- |
-| Backend JavaScript | [JavaScript con Node.js](lenguajes/javascript-node/README.md) | [PostgreSQL](bases-de-datos/postgresql/README.md), [Redis](bases-de-datos/redis/README.md), [Mailpit](herramientas/mailpit/README.md) |
-| Backend TypeScript | [TypeScript con Node.js](lenguajes/typescript-node/README.md) | [MongoDB](bases-de-datos/mongodb/README.md), [Mongo Express](gestores-bd/mongo-express/README.md) |
+| HTML y CSS | [HTML + CSS con Nginx](frontend/html-css-nginx/README.md) | [Nginx Reverse Proxy](herramientas/nginx-reverse-proxy/README.md) |
+| Frontend React | [React con Vite](frontend/react-vite/README.md) | [Express con PostgreSQL](frameworks/express-postgresql/README.md) |
+| Frontend Vue | [Vue con Vite](frontend/vue-vite/README.md) | [FastAPI con PostgreSQL](frameworks/fastapi-postgresql/README.md) |
+| Frontend Angular | [Angular](frontend/angular/README.md) | [.NET Entity Framework con PostgreSQL](frameworks/dotnet-entity-framework-postgresql/README.md) |
+| Backend JavaScript | [Express con PostgreSQL](frameworks/express-postgresql/README.md) | [Redis](bases-de-datos/redis/README.md), [Mailpit](herramientas/mailpit/README.md) |
+| Backend TypeScript | [NestJS con PostgreSQL](frameworks/nestjs-postgresql/README.md) | [MongoDB](bases-de-datos/mongodb/README.md), [Mongo Express](gestores-bd/mongo-express/README.md) |
+| Python backend | [FastAPI con PostgreSQL](frameworks/fastapi-postgresql/README.md) | [Django con PostgreSQL](frameworks/django-postgresql/README.md) |
 | PHP | [PHP con Apache](lenguajes/php-apache/README.md) | [MySQL](bases-de-datos/mysql/README.md), [phpMyAdmin](gestores-bd/phpmyadmin/README.md) |
-| Laravel | [PHP Laravel](lenguajes/php-laravel/README.md) | [PostgreSQL](bases-de-datos/postgresql/README.md), [Mailpit](herramientas/mailpit/README.md) |
+| Laravel | [Laravel con MySQL y phpMyAdmin](frameworks/laravel-mysql/README.md) | [Mailpit](herramientas/mailpit/README.md) |
+| Java Spring Boot | [Spring Boot con PostgreSQL](frameworks/spring-boot-postgresql/README.md) | [Prometheus y Grafana](herramientas/prometheus-grafana/README.md) |
+| C# y .NET | [.NET Entity Framework con PostgreSQL](frameworks/dotnet-entity-framework-postgresql/README.md) | [SQL Server](bases-de-datos/sqlserver/README.md) |
 | Automatizacion | [n8n](automatizacion/n8n/README.md) | [PostgreSQL](bases-de-datos/postgresql/README.md), [Mailpit](herramientas/mailpit/README.md) |
 | Backend con servicios cloud locales | [LocalStack](herramientas/localstack/README.md) | [MinIO](herramientas/minio/README.md), [RabbitMQ](herramientas/rabbitmq/README.md) |
 | Base de datos como servicio | [Supabase local](plataformas/supabase/README.md) | [pgAdmin](gestores-bd/pgadmin/README.md) |
