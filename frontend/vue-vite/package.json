@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "vite --port 5174"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "latest",
+    "vite": "latest",
+    "vue": "latest"
+  },
+  "devDependencies": {}
+}

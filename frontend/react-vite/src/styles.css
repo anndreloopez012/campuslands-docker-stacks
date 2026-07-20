@@ -1,0 +1,3 @@
+body { margin: 0; font-family: Inter, Arial, sans-serif; background: #0f172a; color: white; }
+.shell { min-height: 100vh; display: grid; place-content: center; text-align: center; }
+h1 { color: #22c55e; }
