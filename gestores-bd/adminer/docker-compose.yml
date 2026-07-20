@@ -1,0 +1,9 @@
+services:
+  app:
+    image: adminer:4
+    container_name: gestores-bd-adminer
+    ports:
+      - "${APP_PORT:-8085}:8085"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

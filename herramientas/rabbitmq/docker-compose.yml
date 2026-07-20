@@ -1,0 +1,12 @@
+services:
+  app:
+    image: rabbitmq:3-management
+    container_name: herramientas-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-campus_user}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-campus_pass}
+    ports:
+      - "${APP_PORT:-15672}:15672"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

@@ -1,0 +1,10 @@
+services:
+  app:
+    image: node:22-alpine
+    container_name: lenguajes-typescript-node
+    command: npm install && npm run dev
+    ports:
+      - "${APP_PORT:-3001}:3001"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

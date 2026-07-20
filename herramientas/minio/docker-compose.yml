@@ -1,0 +1,13 @@
+services:
+  app:
+    image: minio/minio:latest
+    container_name: herramientas-minio
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-campus_user}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-campus_pass_123}
+    command: server /data --console-address :9001
+    ports:
+      - "${APP_PORT:-9001}:9001"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

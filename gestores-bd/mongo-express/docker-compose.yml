@@ -1,0 +1,9 @@
+services:
+  app:
+    image: mongo-express:1.0.2
+    container_name: gestores-bd-mongo-express
+    ports:
+      - "${APP_PORT:-8088}:8088"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

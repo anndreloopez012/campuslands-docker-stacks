@@ -1,0 +1,16 @@
+services:
+  app:
+    image: postgres:16-alpine
+    container_name: bases-de-datos-postgresql
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-campus_db}
+      POSTGRES_USER: ${POSTGRES_USER:-campus_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-campus_pass}
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres-data:

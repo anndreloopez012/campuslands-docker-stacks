@@ -1,0 +1,10 @@
+services:
+  app:
+    image: denoland/deno:2.1.4
+    container_name: lenguajes-deno
+    command: run --allow-net --allow-read src/main.ts
+    ports:
+      - "${APP_PORT:-3004}:3004"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

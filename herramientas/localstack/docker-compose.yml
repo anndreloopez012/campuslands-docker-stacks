@@ -1,0 +1,9 @@
+services:
+  app:
+    image: localstack/localstack:latest
+    container_name: herramientas-localstack
+    ports:
+      - "${APP_PORT:-4566}:4566"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

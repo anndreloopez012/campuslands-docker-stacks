@@ -1,0 +1,10 @@
+services:
+  app:
+    image: oven/bun:1
+    container_name: lenguajes-bun
+    command: bun run src/index.ts
+    ports:
+      - "${APP_PORT:-3003}:3003"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

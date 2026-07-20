@@ -1,0 +1,10 @@
+services:
+  app:
+    image: redpandadata/redpanda:latest
+    container_name: herramientas-redpanda
+    command: redpanda start --overprovisioned --smp 1 --memory 512M --reserve-memory 0M --node-id 0 --check=false --kafka-addr PLAINTEXT://0.0.0.0:9092 --advertise-kafka-addr PLAINTEXT://localhost:9092
+    ports:
+      - "${APP_PORT:-8080}:8080"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

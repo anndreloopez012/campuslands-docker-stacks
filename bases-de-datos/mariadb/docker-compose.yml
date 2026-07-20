@@ -1,0 +1,17 @@
+services:
+  app:
+    image: mariadb:11.4
+    container_name: bases-de-datos-mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-campus_root}
+      MARIADB_DATABASE: ${MARIADB_DATABASE:-campus_db}
+      MARIADB_USER: ${MARIADB_USER:-campus_user}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD:-campus_pass}
+    ports:
+      - "${MARIADB_PORT:-3308}:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  mariadb-data:

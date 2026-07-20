@@ -1,0 +1,16 @@
+services:
+  app:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: bases-de-datos-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:-Campus12345*}
+      MSSQL_PID: Developer
+    ports:
+      - "${SQLSERVER_PORT:-1434}:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    restart: unless-stopped
+
+volumes:
+  sqlserver-data:

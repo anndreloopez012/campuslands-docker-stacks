@@ -1,0 +1,16 @@
+services:
+  app:
+    image: gvenzl/oracle-free:23-slim
+    container_name: bases-de-datos-oracle-free
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD:-Campus12345}
+      APP_USER: ${ORACLE_USER:-campus_user}
+      APP_USER_PASSWORD: ${ORACLE_USER_PASSWORD:-campus_pass}
+    ports:
+      - "${ORACLE_PORT:-1522}:1521"
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    restart: unless-stopped
+
+volumes:
+  oracle-data:

@@ -1,0 +1,9 @@
+services:
+  app:
+    image: rediscommander/redis-commander:latest
+    container_name: gestores-bd-redis-commander
+    ports:
+      - "${APP_PORT:-8089}:8089"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

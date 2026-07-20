@@ -1,0 +1,64 @@
+name: Validar estructura
+
+on:
+  pull_request:
+    branches: [main, dev]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+
+      - name: Validar destino del PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const base = context.payload.pull_request.base.ref;
+            const body = base === "main"
+              ? "Este Pull Request apunta a `main` y no se puede aceptar. La rama `main` es produccion. Cierra este PR, actualiza tu rama desde `dev` y abre uno nuevo hacia `dev`."
+              : "Pull Request recibido hacia `dev`. Se revisara la estructura antes de integrarlo.";
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
+            if (base === "main") core.setFailed("Los Pull Requests hacia main no estan permitidos.");
+
+      - name: Validar archivos prohibidos y estructura de stacks
+        id: estructura
+        shell: bash
+        run: |
+          set -euo pipefail
+          forbidden=$(find . -path ./.git -prune -o -type f \( -name ".env" -o -path "*/data/*" -o -path "*/volumes/*" -o -path "*/node_modules/*" -o -name "*.dump" -o -name "*.bak" -o -name "*.tar" -o -name "*.gz" \) -print || true)
+          if [ -n "$forbidden" ]; then
+            echo "Archivos no permitidos:"
+            echo "$forbidden"
+            exit 1
+          fi
+          missing=0
+          while IFS= read -r compose; do
+            dir=$(dirname "$compose")
+            test -f "$dir/README.md" || { echo "Falta README.md en $dir"; missing=1; }
+            test -f "$dir/.env.example" || { echo "Falta .env.example en $dir"; missing=1; }
+            docker compose -f "$compose" config >/dev/null
+          done < <(find . -name docker-compose.yml -print | sort)
+          exit "$missing"
+
+      - name: Comentar rechazo por estructura
+        if: failure() && steps.estructura.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: "Este Pull Request no se puede aceptar todavia porque la estructura no cumple. Revisa que cada stack tenga `README.md`, `docker-compose.yml` y `.env.example`, y que no subas `.env`, datos generados, volumenes, backups o archivos pesados. Corrige la rama y vuelve a hacer push al mismo PR."
+            });

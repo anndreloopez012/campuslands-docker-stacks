@@ -1,0 +1,9 @@
+services:
+  app:
+    image: axllent/mailpit:latest
+    container_name: herramientas-mailpit
+    ports:
+      - "${APP_PORT:-8025}:8025"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

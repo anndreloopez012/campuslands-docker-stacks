@@ -1,0 +1,10 @@
+services:
+  app:
+    image: rust:1.82-slim
+    container_name: lenguajes-rust
+    command: cargo run
+    ports:
+      - "${APP_PORT:-8084}:8084"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

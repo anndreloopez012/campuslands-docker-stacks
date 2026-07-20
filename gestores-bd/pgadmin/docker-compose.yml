@@ -1,0 +1,12 @@
+services:
+  app:
+    image: dpage/pgadmin4:8
+    container_name: gestores-bd-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@campus.local}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-campus_pass}
+    ports:
+      - "${APP_PORT:-8087}:8087"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

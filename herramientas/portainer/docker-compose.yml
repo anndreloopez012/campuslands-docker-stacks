@@ -1,0 +1,11 @@
+services:
+  app:
+    image: portainer/portainer-ce:latest
+    container_name: herramientas-portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
+    restart: unless-stopped
+
+volumes:
+  portainer-data:

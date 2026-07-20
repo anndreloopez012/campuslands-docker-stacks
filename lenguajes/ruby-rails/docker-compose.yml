@@ -1,0 +1,10 @@
+services:
+  app:
+    image: ruby:3.3
+    container_name: lenguajes-ruby-rails
+    command: sh -c "bundle install || true; rails server -b 0.0.0.0 -p 3002"
+    ports:
+      - "${APP_PORT:-3002}:3002"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

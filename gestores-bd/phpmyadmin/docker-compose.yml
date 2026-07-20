@@ -1,0 +1,9 @@
+services:
+  app:
+    image: phpmyadmin:5
+    container_name: gestores-bd-phpmyadmin
+    ports:
+      - "${APP_PORT:-8086}:8086"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

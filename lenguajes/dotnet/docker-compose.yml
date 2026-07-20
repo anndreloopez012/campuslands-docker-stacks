@@ -1,0 +1,10 @@
+services:
+  app:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    container_name: lenguajes-dotnet
+    command: dotnet watch --project app run --urls http://0.0.0.0:8082
+    ports:
+      - "${APP_PORT:-8082}:8082"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

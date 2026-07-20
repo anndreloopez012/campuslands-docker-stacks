@@ -1,0 +1,8 @@
+services:
+  app:
+    image: gcc:14
+    container_name: lenguajes-c-cpp
+    command: sh -c "gcc src/main.c -o build/app && ./build/app"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped

@@ -1,0 +1,10 @@
+services:
+  app:
+    image: composer:2
+    container_name: lenguajes-php-laravel
+    command: sh -c "composer install || true; php artisan serve --host=0.0.0.0 --port=8001"
+    ports:
+      - "${APP_PORT:-8001}:8001"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped
