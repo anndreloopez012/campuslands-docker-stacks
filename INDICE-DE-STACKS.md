@@ -22,8 +22,10 @@
 - [.NET](lenguajes/dotnet/README.md)
 - [Bun](lenguajes/bun/README.md)
 - [C y C++](lenguajes/c-cpp/README.md)
+- [C# con .NET](lenguajes/csharp-dotnet/README.md)
 - [Deno](lenguajes/deno/README.md)
 - [Go](lenguajes/go/README.md)
+- [Java](lenguajes/java/README.md)
 - [Java Spring Boot](lenguajes/java-spring/README.md)
 - [JavaScript con Node.js](lenguajes/javascript-node/README.md)
 - [PHP con Apache](lenguajes/php-apache/README.md)
@@ -61,6 +63,7 @@
 
 ## Herramientas
 
+- [GitHub CLI](herramientas/github-cli/README.md)
 - [LocalStack](herramientas/localstack/README.md)
 - [Mailpit](herramientas/mailpit/README.md)
 - [MinIO](herramientas/minio/README.md)
@@ -70,4 +73,3 @@
 - [RabbitMQ](herramientas/rabbitmq/README.md)
 - [Redpanda](herramientas/redpanda/README.md)
 - [Traefik](herramientas/traefik/README.md)
-
