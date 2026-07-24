@@ -10,7 +10,7 @@ Este README funciona como panel principal de navegacion. Desde aqui puedes ir di
 | --- | --- |
 | Instalar Docker | [Guia de instalacion](docs/instalacion-docker/README.md) |
 | Ver todos los stacks | [Indice completo](INDICE-DE-STACKS.md) |
-| Usar JavaScript, Python, PHP, Java, Go, Rust y otros | [Lenguajes](#lenguajes) |
+| Usar JavaScript, Python, PHP, Java, C#, Go, Rust y otros | [Lenguajes](#lenguajes) |
 | Usar HTML/CSS, React, Vue o Angular | [Frontend](#frontend) |
 | Usar Express, NestJS, FastAPI, Django, Spring Boot, Laravel o .NET EF | [Frameworks completos](#frameworks-completos) |
 | Usar MySQL, PostgreSQL, MongoDB, Redis y otros | [Bases de datos](#bases-de-datos) |
@@ -81,7 +81,9 @@ Abre la categoria que necesitas y entra al README del stack.
 | Python | [lenguajes/python](lenguajes/python/README.md) | Scripts, logica, FastAPI y automatizacion |
 | PHP con Apache | [lenguajes/php-apache](lenguajes/php-apache/README.md) | Paginas PHP clasicas y formularios |
 | PHP Laravel | [lenguajes/php-laravel](lenguajes/php-laravel/README.md) | Proyectos Laravel en contenedor |
+| Java | [lenguajes/java](lenguajes/java/README.md) | Practicar Java puro con JDK sin instalarlo localmente |
 | Java Spring Boot | [lenguajes/java-spring](lenguajes/java-spring/README.md) | APIs Java con Spring Boot |
+| C# con .NET | [lenguajes/csharp-dotnet](lenguajes/csharp-dotnet/README.md) | Practicar C# y APIs basicas con .NET |
 | .NET | [lenguajes/dotnet](lenguajes/dotnet/README.md) | APIs y aplicaciones .NET |
 | Go | [lenguajes/go](lenguajes/go/README.md) | CLI, APIs y concurrencia basica |
 | Rust | [lenguajes/rust](lenguajes/rust/README.md) | Practica con Cargo, ownership y CLI |
@@ -175,6 +177,7 @@ Abre la categoria que necesitas y entra al README del stack.
 | RabbitMQ | [herramientas/rabbitmq](herramientas/rabbitmq/README.md) | Colas y eventos |
 | Redpanda | [herramientas/redpanda](herramientas/redpanda/README.md) | Streaming compatible con Kafka |
 | LocalStack | [herramientas/localstack](herramientas/localstack/README.md) | Servicios cloud simulados |
+| GitHub CLI | [herramientas/github-cli](herramientas/github-cli/README.md) | Practicar GitHub, Pull Requests, issues y repos desde contenedor |
 | Portainer | [herramientas/portainer](herramientas/portainer/README.md) | Administrar Docker desde navegador |
 | Prometheus y Grafana | [herramientas/prometheus-grafana](herramientas/prometheus-grafana/README.md) | Monitoreo, metricas y dashboards |
 | Nginx Reverse Proxy | [herramientas/nginx-reverse-proxy](herramientas/nginx-reverse-proxy/README.md) | Proxy inverso local |
@@ -187,6 +190,7 @@ Abre la categoria que necesitas y entra al README del stack.
 | Si quieres aprender | Empieza por | Luego combina con |
 | --- | --- | --- |
 | HTML y CSS | [HTML + CSS con Nginx](frontend/html-css-nginx/README.md) | [Nginx Reverse Proxy](herramientas/nginx-reverse-proxy/README.md) |
+| GitHub | [GitHub CLI](herramientas/github-cli/README.md) | [Reglas de trabajo](#reglas-de-trabajo) |
 | Frontend React | [React con Vite](frontend/react-vite/README.md) | [Express con PostgreSQL](frameworks/express-postgresql/README.md) |
 | Frontend Vue | [Vue con Vite](frontend/vue-vite/README.md) | [FastAPI con PostgreSQL](frameworks/fastapi-postgresql/README.md) |
 | Frontend Angular | [Angular](frontend/angular/README.md) | [.NET Entity Framework con PostgreSQL](frameworks/dotnet-entity-framework-postgresql/README.md) |
@@ -196,6 +200,7 @@ Abre la categoria que necesitas y entra al README del stack.
 | PHP | [PHP con Apache](lenguajes/php-apache/README.md) | [MySQL](bases-de-datos/mysql/README.md), [phpMyAdmin](gestores-bd/phpmyadmin/README.md) |
 | Laravel | [Laravel con MySQL y phpMyAdmin](frameworks/laravel-mysql/README.md) | [Mailpit](herramientas/mailpit/README.md) |
 | Java Spring Boot | [Spring Boot con PostgreSQL](frameworks/spring-boot-postgresql/README.md) | [Prometheus y Grafana](herramientas/prometheus-grafana/README.md) |
+| Java puro | [Java](lenguajes/java/README.md) | [MySQL](bases-de-datos/mysql/README.md), [MongoDB](bases-de-datos/mongodb/README.md) |
 | C# y .NET | [.NET Entity Framework con PostgreSQL](frameworks/dotnet-entity-framework-postgresql/README.md) | [SQL Server](bases-de-datos/sqlserver/README.md) |
 | Automatizacion | [n8n](automatizacion/n8n/README.md) | [PostgreSQL](bases-de-datos/postgresql/README.md), [Mailpit](herramientas/mailpit/README.md) |
 | Backend con servicios cloud locales | [LocalStack](herramientas/localstack/README.md) | [MinIO](herramientas/minio/README.md), [RabbitMQ](herramientas/rabbitmq/README.md) |

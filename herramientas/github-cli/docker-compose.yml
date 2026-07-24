@@ -1,0 +1,18 @@
+services:
+  github:
+    image: ghcr.io/cli/cli:latest
+    container_name: herramientas-github-cli
+    working_dir: /workspace
+    entrypoint: ["/bin/sh"]
+    command:
+      - -lc
+      - |
+        gh --version
+        git --version
+        tail -f /dev/null
+    environment:
+      GH_TOKEN: ${GITHUB_TOKEN:-}
+    volumes:
+      - ./:/workspace
+      - ../../:/campuslands-docker-stacks
+    restart: unless-stopped

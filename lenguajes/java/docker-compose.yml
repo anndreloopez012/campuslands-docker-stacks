@@ -1,0 +1,13 @@
+services:
+  app:
+    image: eclipse-temurin:21-jdk
+    container_name: lenguajes-java
+    working_dir: /workspace
+    command: sh -c "javac src/Main.java && java -cp src Main"
+    environment:
+      PORT: 8080
+    ports:
+      - "${APP_PORT:-8091}:8080"
+    volumes:
+      - ./:/workspace
+    restart: unless-stopped
